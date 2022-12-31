@@ -35,11 +35,11 @@ class KittensController < ApplicationController
     respond_to do |format|
       if @kitten.save
         format.html do
-          redirect_to kitten_url(@kitten),
-                      notice: "Kitten was successfully created."
+          redirect_to kitten_url(@kitten), notice: "Kitten has been born."
         end
         format.json { render :show, status: :created, location: @kitten }
       else
+        flash.now[:error] = "That kitten cannot be allowed to exist"
         format.html { render :new, status: :unprocessable_entity }
         format.json do
           render json: @kitten.errors, status: :unprocessable_entity
@@ -53,11 +53,11 @@ class KittensController < ApplicationController
     respond_to do |format|
       if @kitten.update(kitten_params)
         format.html do
-          redirect_to kitten_url(@kitten),
-                      notice: "Kitten was successfully updated."
+          redirect_to kitten_url(@kitten), notice: "Kitten has been changed."
         end
         format.json { render :show, status: :ok, location: @kitten }
       else
+        flash.now[:error] = "That kitten is an abomination!"
         format.html { render :edit, status: :unprocessable_entity }
         format.json do
           render json: @kitten.errors, status: :unprocessable_entity
@@ -72,7 +72,7 @@ class KittensController < ApplicationController
 
     respond_to do |format|
       format.html do
-        redirect_to kittens_url, notice: "Kitten was successfully destroyed."
+        redirect_to kittens_url, notice: "Kitten now is in the pet cemetary. :("
       end
       format.json { head :no_content }
     end
