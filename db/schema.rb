@@ -12,10 +12,10 @@
 
 ActiveRecord::Schema[7.0].define(version: 2022_12_31_183339) do
   create_table "kittens", force: :cascade do |t|
-    t.text "name"
-    t.text "age"
-    t.text "cuteness"
-    t.text "softness"
+    t.string "name"
+    t.integer "age"
+    t.integer "cuteness"
+    t.integer "softness"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
